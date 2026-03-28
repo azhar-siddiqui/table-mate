@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-    <div className="flex items-center justify-center w-full min-h-screen">
-      <Button>Click here</Button>
-    </div>
-  );
+export default async function Page() {
+  const user = true;
+  if (user) {
+    redirect("/dashboard/overview");
+  } else {
+    return redirect("/auth/sign-in");
+  }
 }
