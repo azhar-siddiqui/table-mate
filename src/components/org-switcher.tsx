@@ -30,7 +30,7 @@ export function OrgSwitcher() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="group data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="bg-primary flex aspect-square size-8 shrink-0 items-center justify-center overflow-hidden rounded-lg text-xl">
                 🍽️
@@ -46,9 +46,17 @@ export function OrgSwitcher() {
                   Table{""}
                   <span className="truncate font-bold text-primary">Mate</span>
                 </span>
-                <span className="text-muted-foreground truncate text-xs">
-                  Connecting People Through Dining
-                </span>
+                <div className="overflow-hidden">
+                  <span
+                    className={`
+                      inline-block text-muted-foreground text-xs 
+                      whitespace-nowrap 
+                      ${state === "collapsed" ? "" : "animate-marquee"}
+                    `}
+                  >
+                    Connecting People Through Dining
+                  </span>
+                </div>
               </div>
               <Icons.chevronsUpDown
                 className={`ml-auto transition-all duration-200 ease-in-out ${

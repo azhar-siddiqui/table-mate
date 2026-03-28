@@ -2,6 +2,7 @@ import {
   IconAdjustmentsHorizontal,
   IconAlertCircle,
   IconAlertTriangle,
+  IconArmchair,
   IconArrowRight,
   IconBell,
   IconBold,
@@ -10,6 +11,7 @@ import {
   IconBrandTwitter,
   IconBrightness,
   IconCalendar,
+  IconCashRegister,
   IconCheck,
   IconChecks,
   IconChevronDown,
@@ -28,6 +30,7 @@ import {
   IconCode,
   IconCommand,
   IconCreditCard,
+  IconCrown,
   IconDeviceLaptop,
   IconDots,
   IconDotsVertical,
@@ -36,8 +39,8 @@ import {
   IconEyeOff,
   IconFile,
   IconFileText,
-  IconFileTypePdf,
   IconFileTypeDoc,
+  IconFileTypePdf,
   IconFileTypeXls,
   IconFileZip,
   IconFolder,
@@ -86,9 +89,8 @@ import {
   IconUserX,
   IconUsers,
   IconVideo,
-  IconCrown,
-  IconX
-} from '@tabler/icons-react';
+  IconX,
+} from "@tabler/icons-react";
 
 export type Icon = React.ComponentType<IconProps>;
 
@@ -212,5 +214,8 @@ export const Icons = {
   slash: IconSlash,
   calendar: IconCalendar,
   galleryVerticalEnd: IconStack2,
-  moreHorizontal: IconDots
+  moreHorizontal: IconDots,
+
+  armchair: IconArmchair,
+  cashRegister: IconCashRegister,
 };

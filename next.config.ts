@@ -3,16 +3,36 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: "https",
-  //       hostname: "images.unsplash.com",
-  //       port: "",
-  //       pathname: "/**",
-  //     },
-  //   ],
-  // },
+  output: process.env.BUILD_STANDALONE === "true" ? "standalone" : undefined,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.slingacademy.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "clerk.com",
+        port: "",
+      },
+    ],
+  },
+  transpilePackages: ["geist"],
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
 };
 
 export default nextConfig;
