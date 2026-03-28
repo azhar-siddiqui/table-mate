@@ -2,47 +2,51 @@
  * Default theme that loads when no user preference is set
  * Change this value to set a different default theme
  */
-export const DEFAULT_THEME = 'vercel';
+export const DEFAULT_THEME = "vercel";
 
 export const THEMES = [
   {
-    name: 'Claude',
-    value: 'claude'
+    name: "Claude",
+    value: "claude",
   },
   {
-    name: 'Neobrutualism',
-    value: 'neobrutualism'
+    name: "Amber",
+    value: "amber",
   },
   {
-    name: 'Supabase',
-    value: 'supabase'
+    name: "Neobrutualism",
+    value: "neobrutualism",
   },
   {
-    name: 'Vercel',
-    value: 'vercel'
+    name: "Supabase",
+    value: "supabase",
   },
   {
-    name: 'Mono',
-    value: 'mono'
+    name: "Vercel",
+    value: "vercel",
   },
   {
-    name: 'Notebook',
-    value: 'notebook'
+    name: "Mono",
+    value: "mono",
   },
   {
-    name: 'Light Green',
-    value: 'light-green'
+    name: "Notebook",
+    value: "notebook",
   },
   {
-    name: 'Zen',
-    value: 'zen'
+    name: "Light Green",
+    value: "light-green",
   },
   {
-    name: 'Astro Vista',
-    value: 'astro-vista'
+    name: "Zen",
+    value: "zen",
   },
   {
-    name: 'WhatsApp',
-    value: 'whatsapp'
-  }
+    name: "Astro Vista",
+    value: "astro-vista",
+  },
+  {
+    name: "WhatsApp",
+    value: "whatsapp",
+  },
 ];
