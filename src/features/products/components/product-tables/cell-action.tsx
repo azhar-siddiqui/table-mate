@@ -1,27 +1,27 @@
-'use client';
-import { AlertModal } from '@/components/modal/alert-modal';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Icons } from "@/components/icons";
+import { AlertModal } from "@/components/modal/alert-modal";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { deleteProduct } from '../../api/service';
-import { productKeys } from '../../api/queries';
-import type { Product } from '../../api/types';
-import { Icons } from '@/components/icons';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
+import { productKeys } from "../../api/queries";
+import { deleteProduct } from "../../api/service";
+import type { Product } from "../../api/types";
 
 interface CellActionProps {
   data: Product;
 }
 
-export function CellAction({ data }: CellActionProps) {
+export function CellAction({ data }: Readonly<CellActionProps>) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -30,12 +30,12 @@ export function CellAction({ data }: CellActionProps) {
     mutationFn: (id: number) => deleteProduct(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: productKeys.all });
-      toast.success('Product deleted successfully');
+      toast.success("Product deleted successfully");
       setOpen(false);
     },
     onError: () => {
-      toast.error('Failed to delete product');
-    }
+      toast.error("Failed to delete product");
+    },
   });
 
   return (
@@ -48,18 +48,20 @@ export function CellAction({ data }: CellActionProps) {
       />
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant='ghost' className='h-8 w-8 p-0'>
-            <span className='sr-only'>Open menu</span>
-            <Icons.ellipsis className='h-4 w-4' />
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <Icons.ellipsis className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
+        <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem onClick={() => router.push(`/dashboard/product/${data.id}`)}>
-            <Icons.edit className='mr-2 h-4 w-4' /> Update
+          <DropdownMenuItem
+            onClick={() => router.push(`/dashboard/product/${data.id}`)}
+          >
+            <Icons.edit className="mr-2 h-4 w-4" /> Update
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
-            <Icons.trash className='mr-2 h-4 w-4' /> Delete
+            <Icons.trash className="mr-2 h-4 w-4" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
