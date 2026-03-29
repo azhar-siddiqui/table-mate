@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Order, OrderStatus } from "@/types/order-table";
+import { Order, OrderItem, OrderStatus } from "@/types/order-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 
@@ -28,11 +28,14 @@ export const columns: ColumnDef<Order>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
+    maxSize: 50,
   },
   {
     header: "Order ID",
     accessorKey: "id",
     cell: ({ row }) => <div className="font-medium">{row.getValue("id")}</div>,
+    enableHiding: false,
+    maxSize: 150,
   },
   {
     header: "Table Number",
@@ -40,25 +43,37 @@ export const columns: ColumnDef<Order>[] = [
     cell: ({ row }) => (
       <div className="font-medium">{row.getValue("tableNumber")}</div>
     ),
+    maxSize: 150,
   },
   {
-    header: "orderItems",
-    accessorKey: "Order Item",
-    cell: ({ row }) => <div className="font-medium">Order Items</div>,
+    header: "Order Items",
+    accessorKey: "orderItems",
+    cell: ({ row }) => {
+      const orderItems = row.getValue("orderItems") as OrderItem[];
+
+      if (!Array.isArray(orderItems) || orderItems.length === 0) {
+        return <div className="text-muted-foreground">-</div>;
+      }
+
+      // Join all item names with comma
+      const itemNames = orderItems.map((item) => item.name).join(", ");
+      return <div>{itemNames}</div>;
+    },
   },
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: "Amount",
     cell: ({ row }) => {
       const amount = Number.parseFloat(row.getValue("amount"));
 
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       }).format(amount);
 
-      return <div className="text-right font-medium">{formatted}</div>;
+      return <div className="font-medium">{formatted}</div>;
     },
+    maxSize: 550,
   },
   {
     accessorKey: "status",
@@ -75,9 +90,11 @@ export const columns: ColumnDef<Order>[] = [
       }
       return <div className="capitalize">{status}</div>;
     },
+    maxSize: 150,
   },
   {
     id: "actions",
     cell: ({ row }) => <CellAction data={row.original} />,
+    maxSize: 50,
   },
 ];
