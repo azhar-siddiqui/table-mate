@@ -1,8 +1,10 @@
 "use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Order, OrderStatus } from "@/types/order-table";
 import { ColumnDef } from "@tanstack/react-table";
+import { CellAction } from "./cell-action";
 
 export const columns: ColumnDef<Order>[] = [
   {
@@ -73,5 +75,9 @@ export const columns: ColumnDef<Order>[] = [
       }
       return <div className="capitalize">{status}</div>;
     },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];

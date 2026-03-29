@@ -2,7 +2,6 @@ import { Icons } from "@/components/icons";
 import PageContainer from "@/components/layout/page-container";
 import { buttonVariants } from "@/components/ui/button";
 import { productInfoContent } from "@/config/infoconfig";
-import ProductListingPage from "@/features/products/components/product-listing";
 import { searchParamsCache } from "@/lib/searchparams";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -12,11 +11,11 @@ export const metadata = {
   title: "Dashboard: Products",
 };
 
-type pageProps = {
+type PageProps = {
   searchParams: Promise<SearchParams>;
 };
 
-export default async function Page(props: Readonly<pageProps>) {
+export default async function Page(props: Readonly<PageProps>) {
   const searchParams = await props.searchParams;
   searchParamsCache.parse(searchParams);
 
@@ -36,7 +35,7 @@ export default async function Page(props: Readonly<pageProps>) {
         </Link>
       }
     >
-      <ProductListingPage />
+      Product List Page
     </PageContainer>
   );
 }
